@@ -5,6 +5,7 @@
 // Parameter definitions for both modules and workflow
 params.CONTAINER = "quay.io/biocontainers/bowtie:1.2.3--py37hc9558a2_0"
 params.OUTPUT = "bowtie_output"
+params.LABEL = ""
 
 /*
  * Bowtie module for indexing
@@ -12,7 +13,7 @@ params.OUTPUT = "bowtie_output"
  
 process bowtieIdx {
 
-    // indicates to use as container the value indicated in the parameter
+    // indicates to use as a container the value indicated in the parameter
     container params.CONTAINER
 
     // show in the log which input file is analysed
@@ -41,8 +42,13 @@ process bowtieAln {
     // where to store the results and in which way
     publishDir(params.OUTPUT, pattern: '*.sam')
 
+    // indicates to use as a container the value indicated in the parameter
     container params.CONTAINER
-    
+
+    // indicates to use as a label the value indicated in the parameter
+    label (params.LABEL)
+
+
     tag { "${reads}" }  							
 
     input:
