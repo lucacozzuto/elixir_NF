@@ -2,13 +2,20 @@
 *  multiqc module
 */
 
+// Parameter definitions
 params.CONTAINER = "quay.io/biocontainers/multiqc:1.9--pyh9f0ad1d_0"
 params.OUTPUT = "multiqc_output"
 params.LABEL = ""
 
 process multiqc {
+
+    // where to store the results and in which way
     publishDir(params.OUTPUT, mode: 'copy')
+
+    // indicates to use as a container the value indicated in the parameter
     container params.CONTAINER
+
+    // indicates to use as a label the value indicated in the parameter
     label (params.LABEL)
 
     input:
@@ -19,6 +26,6 @@ process multiqc {
 
     script:
     """
-    multiqc .
+         multiqc .
     """
 }
