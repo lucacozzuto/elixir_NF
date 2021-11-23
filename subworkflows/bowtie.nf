@@ -23,7 +23,7 @@ process bowtieIdx {
     path ref   							
 
     output:									
-   	tuple val("${ref}"), path ("${ref}*.ebwt")
+    tuple val("${ref}"), path ("${ref}*.ebwt")
 
     script:									
     """
@@ -49,7 +49,7 @@ process bowtieAln {
     label (params.LABEL)
 
 
-    tag { "${reads}" }  							
+    tag "${reads}" 							
 
     input:
     tuple val(refname), path (ref_files)
