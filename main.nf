@@ -1,7 +1,7 @@
 #!/usr/bin/env nextflow
 
 /*
- * Copyright (c) 2013-2020, Centre for Genomic Regulation (CRG).
+ * Copyright (c) 2021, Centre for Genomic Regulation (CRG).
  *
  *   This file is part of 'CRG_Containers_NextFlow'.
  *
@@ -77,7 +77,7 @@ reference = file(params.reference)
 subwork_folder = "${projectDir}/subworkflows/"
 
 include { fastqc } from "${subwork_folder}/fastqc" addParams(OUTPUT: fastqcOutputFolder)
-include { BOWTIE } from "${subwork_folder}/bowtie" addParams(OUTPUT: alnOutputFolder)
+include { BOWTIE } from "${subwork_folder}/bowtie" addParams(OUTPUT: alnOutputFolder, LABEL:twocpus)
 include { multiqc } from "${subwork_folder}/multiqc" addParams(OUTPUT: multiqcOutputFolder)
  
 
