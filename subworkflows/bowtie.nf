@@ -1,16 +1,22 @@
 /*
-*  bowtie modules and workflows
+*  Bowtie workflow and corresponding modules
 */
 
+// Parameter definitions for both modules and workflow
 params.CONTAINER = "quay.io/biocontainers/bowtie:1.2.3--py37hc9558a2_0"
 params.OUTPUT = "bowtie_output"
 
 /*
- * Bowtie index
+ * Bowtie module for indexing
  */
+ 
 process bowtieIdx {
+
+    // indicates to use as container the value indicated in the parameter
     container params.CONTAINER
-    tag { "${ref}" }
+
+    // show in the log which input file is analysed
+    tag "${ref}"
     							
     input:
     path ref   							
@@ -27,11 +33,16 @@ process bowtieIdx {
 }
 
 /*
- * Bowtie alignment
+ * Bowtie module for alignment
  */
+ 
 process bowtieAln {
+
+    // where to store the results and in which way
     publishDir(params.OUTPUT, pattern: '*.sam')
+
     container params.CONTAINER
+    
     tag { "${reads}" }  							
 
     input:
@@ -44,19 +55,23 @@ process bowtieAln {
 
     script:									
     """
-    bowtie -p ${task.cpus} ${refname} -q ${reads} -S > ${reads}.sam 2> ${reads}.log
+        bowtie -p ${task.cpus} ${refname} -q ${reads} -S > ${reads}.sam 2> ${reads}.log
     """
 }
+
+/*
+ * Bowtie workflow connecting both indexing and alignment
+ */
 
 workflow BOWTIE {
  
     take: 
-    reffile
-    input
+    ref_file
+    input_reads
     
     main:
-		bow_index = bowtieIdx(reffile)
-		bowtieAln(bow_index, input)
+	bow_index = bowtieIdx(ref_file)
+	bowtieAln(bow_index, input_reads)
     emit:
     	sam = bowtieAln.out.samples_sam
     	logs = bowtieAln.out.samples_log
