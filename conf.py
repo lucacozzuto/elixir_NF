@@ -19,11 +19,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u'Reproducible research and data analysis using Nextflow pipelines'
+project = u'Nextflow'
 copyright = u'2021, CRG'
 author = u'Luca Cozzuto'
-author = u'Julia Ponomarenko'
-author = u'Toni Hermoso'
 
 # The short X.Y version
 version = u''
