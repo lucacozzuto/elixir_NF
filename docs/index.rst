@@ -4,7 +4,7 @@
 Courses @ Elixir Nov 2021
 *******************
 
-Reproducible research and data analysis using **Nextflow** pipelines
+Nextflow 
 =======
 
 
