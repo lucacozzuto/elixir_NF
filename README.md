@@ -1,3 +1,3 @@
 GitHub Pages of [lucacozzuto/elixir_NF](https://github.com/lucacozzuto/elixir_NF.git)
 ===
-Sphinx html documentation of [161d7f5c](https://github.com/lucacozzuto/elixir_NF/tree/161d7f5c3f6ef9f6d080362af549f2fa4775e79a)
+Sphinx html documentation of [1dc7568b](https://github.com/lucacozzuto/elixir_NF/tree/1dc7568b3998f169b9b9130f692e175bf0c251c1)
