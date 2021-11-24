@@ -11,7 +11,7 @@ params.LABEL = ""
  * Bowtie module for indexing
  */
  
-process bowtieIdx {
+process Index {
 
     // indicates to use as a container the value indicated in the parameter
     container params.CONTAINER
@@ -37,7 +37,7 @@ process bowtieIdx {
  * Bowtie module for alignment
  */
  
-process bowtieAln {
+process Align {
 
     // where to store the results and in which way
     publishDir(params.OUTPUT, pattern: '*.sam')
@@ -78,13 +78,13 @@ workflow BOWTIE {
 
     // main part where we connect two modules, indexing and alignment
     main:
-	bow_index = bowtieIdx(ref_file)
-	bowtieAln(bow_index, input_reads)
+	bow_index = Index(ref_file)
+	Align(bow_index, input_reads)
 	
     // definition of workflow outputs derived from the alignment module outputs
     emit:
-    	sam = bowtieAln.out.samples_sam
-    	logs = bowtieAln.out.samples_log
+    	sam = Align.out.samples_sam
+    	logs = Align.out.samples_log
 }
 
 
