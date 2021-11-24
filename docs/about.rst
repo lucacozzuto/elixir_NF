@@ -20,7 +20,7 @@ Day 3, Wednesday 1st Dec, 09:30-12:00.
 Instructors:
 
 
-.. |luca| image:: images/lcozzuto.jpg
+.. |luca| image:: images/lcozzuto.jpeg
   :alt: Alternative text
   
 .. |paolo| image:: images/paoloditommaso.png
