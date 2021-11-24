@@ -9,13 +9,13 @@ About the course
    :toctree: generated
 
 
+Reproducible research and data analysis using Nextflow pipelines
+
+Course page: https://elixir-workflow-workshop.github.io/2021/
+
+Course materials: https://github.com/biocorecrg/elixir_NF/edit/main/README.md
 
 
-.. |luca| image:: images/lcozzuto.jpg
-  :alt: Alternative text
-  
-  
+Day 3, Wednesday 1st Dec, 09:30-12:00.
 
-
-
-
+ 
