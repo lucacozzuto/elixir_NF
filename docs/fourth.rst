@@ -22,7 +22,7 @@ multiQC
 Bowtie
 ==========
 
-The **subworkflows/bowtie.nf** file contains the sub-workflow and the modules **Align** and **Index**. 
+The **subworkflows/bowtie.nf** file contains the modules **Align** and **Index** and the sub-workflow **BOWTIE** 
 
 .. literalinclude:: ../subworkflows/bowtie.nf
    :language: groovy
