@@ -64,7 +64,7 @@ Nextflow supports many more container engines like Singularity, Shifter, Podman 
 
   executor >  local (3)
   [2f/6cd1ca] process > fastqc (B7_H3K4me1_s_chr19.fastq.gz) [100%] 2 of 2 ✔
-  [55/032373] process > BOWTIE:Index (chr19.fasta.gz)        [  0%] 0 of 1
+  [a2/305aae] process > BOWTIE:Index (chr19.fasta.gz)        [  0%] 0 of 1
   [79/f30f70] process > BOWTIE:Align (B7_H3K4me1_s_chr19.fastq.gz) [100%] 2 of 2 ✔
   [50/088302] process > multiqc                                    [100%] 1 of 1 ✔
   /Users/lcozzuto/ooo/work/27/f1cc39c1e01c9ee55684b347c492f5/B7_input_s_chr19.fastq.gz.sam
@@ -104,7 +104,7 @@ At the start of each row, there is an **alphanumeric code**:
 
 .. code-block:: console
   
-  [2f/6cd1ca] process > fastqc (B7_H3K4me1_s_chr19.fastq.gz) [100%] 2 of 2
+  [a2/305aae] process > BOWTIE:Index (chr19.fasta.gz)        [  0%] 0 of 1
 
 This code indicates **the path** in which the process is "isolated" and where the corresponding temporary files are kept in the **work** directory. 
 
@@ -114,9 +114,11 @@ This code indicates **the path** in which the process is "isolated" and where th
 Let's have a look inside that folder:
 
 .. code-block:: console
-	ls 
 
-You see a lot of "hidden" files:
+	cd work/a2/305aaee297250b0c7a455cab35707c/
+	ls -alht
+
+You see input files staged as links, output files and "hidden" files in which we have different information:
 
 - **.exitcode**, contains 0 if everything is ok, another value if there was a problem.
 - **.command.log**, contains the log of the command execution. It is often identical to `.command.out`
@@ -127,40 +129,33 @@ You see a lot of "hidden" files:
 - **.command.run**, contains the code made by nextflow for the execution of `.command.sh`, and contains environmental variables, eventual invocations of linux containers etc.
 
 
-Resuming and batch execution
-===============================
+Resuming and changing parameters 
+=================================
+
+We can copy a fastq files in another place and change the file name:
+
+.. code-block:: console
+
+	cp $PATH/.nextflow/assets/lucacozzuto/elixir_NF/data/*.gz .
+	mv B7_H3K4me1_s_chr19.fastq.gz test2.fastq.gz
+        mv B7_input_s_chr19.fastq.gz test1.fastq.gz
+
+Then we can execute again the pipeline feeding the new input files by using the pipeline parameter ``--reads ""``
+
+.. note::
+	Nextflow parameters are indicated by one dash (-). Pipeline parameters by two dahses (\-\-)
+
 
 You can execute again the pipeline by using the Nextflow parameter ``-resume`` and send it to background with ``-bg``. 
 
 
 .. code-block:: console
 
-  nextflow run lucacozzuto/elixir_NF -with-docker -r main -bg -resume > log
+  nextflow run lucacozzuto/elixir_NF -with-docker -r main -bg --reads "*.fastq.gz" -resume > log
   
   cat log 
   
-  N E X T F L O W  ~  version 21.10.3
-  Launching `lucacozzuto/elixir_NF` [deadly_kirch] - revision: 040cd63a79 [main]
-
-  BIOCORE@CRG - N F TESTPIPE  ~  version 1.0
-  =============================================
-  reads                           : /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/data/*.fastq.gz
-  reference                       : /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/data/chr19.fasta.gz
-  output				: ./output
-
-  [a2/305aae] Cached process > BOWTIE:Index (chr19.fasta.gz)
-  [44/f37380] Cached process > BOWTIE:Align (B7_input_s_chr19.fastq.gz)
-  /Users/lcozzuto/ooo/work/44/f37380aa3829516f8537725d579cb5/B7_input_s_chr19.fastq.gz.sam
-  /Users/lcozzuto/ooo/work/44/f37380aa3829516f8537725d579cb5/B7_input_s_chr19.fastq.gz.log
-  [4d/fb89a8] Cached process > fastqc (B7_input_s_chr19.fastq.gz)
-  [f9/0824a8] Cached process > BOWTIE:Align (B7_H3K4me1_s_chr19.fastq.gz)
-  /Users/lcozzuto/ooo/work/f9/0824a8b50fde310379ba91aeceb946/B7_H3K4me1_s_chr19.fastq.gz.log
-  /Users/lcozzuto/ooo/work/f9/0824a8b50fde310379ba91aeceb946/B7_H3K4me1_s_chr19.fastq.gz.sam
-  [89/ab8f30] Cached process > fastqc (B7_H3K4me1_s_chr19.fastq.gz)
-  [f5/3c2e82] Cached process > multiqc
-
-  Done! Open the following report in your browser --> ./output/ouptut_multiQC/multiqc_report.html
-  
+ 
 
 Reporting and monitoring
 =========================
