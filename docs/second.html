@@ -42,6 +42,7 @@
 <li class="toctree-l1"><a class="reference internal" href="first.html">Introduction to Nextflow</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Launching a pipeline</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#sharing-nextflow-code">Sharing Nextflow code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supported-linux-containers">Supported Linux containers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#work-folder-structure-and-process-isolation">Work folder structure and process isolation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#resuming-and-changing-parameters">Resuming and changing parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#reporting-and-monitoring">Reporting and monitoring</a></li>
@@ -111,7 +112,35 @@ The default platform is <strong>GitHub</strong>, so we will use this repository 
 </pre></div>
 </div>
 <p>In this way Nextflow will pull the pipeline from the GitHub repository, store it at <code class="docutils literal notranslate"><span class="pre">$PATH/.nextflow/assets</span></code> and launch it using the container engine <a class="reference external" href="https://www.docker.com/">Docker</a>, thanks to the Nextflow parameter <code class="docutils literal notranslate"><span class="pre">-with-docker</span></code>.</p>
+</section>
+<section id="supported-linux-containers">
+<h2>Supported Linux containers<a class="headerlink" href="#supported-linux-containers" title="Permalink to this headline"></a></h2>
 <p>Nextflow supports many more container engines like Singularity, Shifter, Podman and Charliecloud. In this example we will use Docker: the default image is stored in <a class="reference external" href="https://hub.docker.com/">DockerHub</a> and is retrieved on the fly.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Docker</p></th>
+<th class="head"><p>Singularity</p></th>
+<th class="head"><p>Shifter</p></th>
+<th class="head"><p>Podman</p></th>
+<th class="head"><p>Charliecloud</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../_images/docker-logo.png"><img alt="docker" src="../_images/docker-logo.png" style="width: 200px;" /></a></p></td>
+<td><p><a class="reference internal" href="../_images/singularity_logo.jpeg"><img alt="singularity" src="../_images/singularity_logo.jpeg" style="width: 200px;" /></a></p></td>
+<td><p><a class="reference internal" href="../_images/shifter.png"><img alt="shifter" src="../_images/shifter.png" style="width: 200px;" /></a></p></td>
+<td><p><a class="reference internal" href="../_images/podman-logo.png"><img alt="podman" src="../_images/podman-logo.png" style="width: 200px;" /></a></p></td>
+<td><p><img alt="charlie" src="../_images/charlie.png" /></p></td>
+</tr>
+</tbody>
+</table>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">N E X T F L O W  ~  version 21.04.3</span>
 <span class="go">Pulling lucacozzuto/elixir_NF ...</span>
 <span class="go">downloaded from https://github.com/lucacozzuto/elixir_NF.git</span>
