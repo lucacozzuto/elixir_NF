@@ -283,7 +283,7 @@ We can check the appearance of a new pipeline and the content
   :width: 800
   
   
-When the pipeline is finished you also get a mail. Adding the parameter ``-with-report`` will produce a final `html report <report.html>`__ with all the information that was in the tower.nf website.
+When the pipeline is finished you also get a mail. Adding the parameter ``-with-report`` will produce a final `html report <https://lucacozzuto.github.io/elixir_NF/docs/report.html>`__ with all the information that was in the tower.nf website.
 
 
 
