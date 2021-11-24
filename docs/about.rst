@@ -15,7 +15,28 @@ Course page: https://elixir-workflow-workshop.github.io/2021/
 
 Course materials: https://github.com/biocorecrg/elixir_NF/edit/main/README.md
 
-
 Day 3, Wednesday 1st Dec, 09:30-12:00.
 
- 
+Instructors:
+
+
+.. |luca| image:: images/lcozzuto.jpg
+  :alt: Alternative text
+  
+.. |paolo| image:: images/paoloditommaso.png
+  :alt: Alternative text
+  
+.. |evan| image:: images/evanfloden.png
+  :alt: Alternative text
+  
+
+.. list-table:: Main instructors:
+   :widths: 50 50 50
+   :header-rows: 1
+
+   * - Luca Cozzuto
+     - Paolo Di Tommaso
+     - Evan Floden
+   * - |luca|
+     - |paolo|
+     - |evan|
