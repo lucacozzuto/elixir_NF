@@ -155,8 +155,89 @@ You can execute again the pipeline by using the Nextflow parameter ``-resume`` a
   
   cat log 
   
- 
+	N E X T F L O W  ~  version 21.10.3
+	Launching `lucacozzuto/elixir_NF` [jolly_visvesvaraya] - revision: 040cd63a79 [main]
+	NOTE: Your local project version looks outdated - a different revision is available in the remote repository [cf2612db62]
+
+	BIOCORE@CRG - N F TESTPIPE  ~  version 1.0
+	=============================================
+	reads                           : *.fastq.gz
+	reference                       : /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/data/chr19.fasta.gz
+	output				: ./output
+
+	[8b/cfcc4f] Submitted process > fastqc (test1.fastq.gz)
+	[5b/71ae88] Submitted process > fastqc (test2.fastq.gz)
+	[6e/1cc3be] Cached process > BOWTIE:Index (chr19.fasta.gz)
+	[97/2a6a72] Submitted process > BOWTIE:Align (test2.fastq.gz)
+	[0a/951748] Submitted process > BOWTIE:Align (test1.fastq.gz)
+	/Users/lcozzuto/ooo/work/97/2a6a7245675d7913019aa8983c5e55/test2.fastq.gz.log
+	/Users/lcozzuto/ooo/work/97/2a6a7245675d7913019aa8983c5e55/test2.fastq.gz.sam
+	/Users/lcozzuto/ooo/work/0a/9517481ef43b0e88163ec5f8b4d71f/test1.fastq.gz.log
+	/Users/lcozzuto/ooo/work/0a/9517481ef43b0e88163ec5f8b4d71f/test1.fastq.gz.sam
+	[f7/1b5746] Submitted process > multiqc
+
+	Done! Open the following report in your browser --> ./output/ouptut_multiQC/multiqc_report.html
+
+You can see that the **indexing** of the genome is cached while the processes that are influenced by the new files are triggered. 
 
 Reporting and monitoring
 =========================
-Before going to the code we can have a look 
+
+Before going to the code we can have a look to two important features of Nextflow: the ability to produce a comprehensive report and the live monitoring offered by **tower.nf** web application.
+
+We can go to the **tower.nf** website
+
+.. image:: images/tower.png
+  :width: 800
+
+ and click on the GitHub authentication.
+
+.. image:: images/tower.png
+  :width: 800
+
+You can generate your token at https://tower.nf/tokens exporting those environmental variables:
+
+.. code-block:: console
+
+	export TOWER_ACCESS_TOKEN=*******YOUR***TOKEN*****HERE*******
+	export NXF_VER=21.04.0
+
+You can also store them indefinitely in your **.bashrc** or **.bash_profile** file.
+
+We can then launch again the pipeline this time without ``-resume`` and check the live reporting on the tower website adding the parameter ``-with-tower``.
+
+.. code-block:: console
+
+	nextflow run lucacozzuto/elixir_NF -with-docker -r main -bg --reads "*.fastq.gz" -with-tower > log
+	
+	tail -f log
+	
+	N E X T F L O W  ~  version 21.10.3
+	Launching `lucacozzuto/elixir_NF` [evil_ekeblad] - revision: 040cd63a79 [main]
+	NOTE: Your local project version looks outdated - a different revision is available in the remote repository [fb23636633]
+	Downloading plugin nf-tower@1.3.0
+
+	BIOCORE@CRG - N F TESTPIPE  ~  version 1.0
+	=============================================
+	reads                           : *.fastq.gz
+	reference                       : /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/data/chr19.fasta.gz
+	output				: ./output
+
+	Monitor the execution with Nextflow Tower using this url https://tower.nf/user/lucacozzuto/watch/54kIaLzfwIfiLx
+	[23/b06dda] Submitted process > fastqc (test1.fastq.gz)
+	[ee/82bce0] Submitted process > fastqc (test2.fastq.gz)
+	[27/82af32] Submitted process > BOWTIE:Index (chr19.fasta.gz)
+	[...]
+
+We can check the appearance of a new pipeline and the content
+
+.. image:: images/tower_elix1.png
+  :width: 800
+  
+.. image:: images/tower_elix2.png
+  :width: 800
+  
+When the pipeline is finished you also get a mail. Adding the parameter ``-with-report`` will produce a final html report with all the information that was in the tower.nf website.
+
+
+
