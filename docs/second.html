@@ -205,29 +205,16 @@ is the right container engine. We can do this by using the Nextflow parameter <c
 <p>Let’s have a look inside that folder:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd work/a2/305aaee297250b0c7a455cab35707c/</span>
 <span class="go">ls -alht</span>
+
+<span class="go">-rw-r--r--   1 lcozzuto  staff    20M Nov 24 16:12 chr19.fasta.gz.rev.1.ebwt</span>
+<span class="go">-rw-r--r--   1 lcozzuto  staff   6.9M Nov 24 16:12 chr19.fasta.gz.rev.2.ebwt</span>
+<span class="go">-rw-r--r--   1 lcozzuto  staff    20M Nov 24 16:11 chr19.fasta.gz.1.ebwt</span>
+<span class="go">-rw-r--r--   1 lcozzuto  staff   6.9M Nov 24 16:11 chr19.fasta.gz.2.ebwt</span>
+<span class="go">-rw-r--r--   1 lcozzuto  staff    53B Nov 24 16:10 chr19.fasta.gz.3.ebwt</span>
+<span class="go">-rw-r--r--   1 lcozzuto  staff    14M Nov 24 16:10 chr19.fasta.gz.4.ebwt</span>
+<span class="go">lrwxr-xr-x   1 lcozzuto  staff    74B Nov 24 16:10 chr19.fasta.gz -&gt; /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/data/chr19.fasta.gz</span>
 </pre></div>
 </div>
-<dl class="option-list">
-<dt><kbd><span class="option">-r<var>w-r–r–</var></span></kbd></dt>
-<dd><p>1 lcozzuto  staff    20M Nov 24 16:12 chr19.fasta.gz.rev.1.ebwt</p>
-</dd>
-<dt><kbd><span class="option">-r<var>w-r–r–</var></span></kbd></dt>
-<dd><p>1 lcozzuto  staff   6.9M Nov 24 16:12 chr19.fasta.gz.rev.2.ebwt</p>
-</dd>
-<dt><kbd><span class="option">-r<var>w-r–r–</var></span></kbd></dt>
-<dd><p>1 lcozzuto  staff    20M Nov 24 16:11 chr19.fasta.gz.1.ebwt</p>
-</dd>
-<dt><kbd><span class="option">-r<var>w-r–r–</var></span></kbd></dt>
-<dd><p>1 lcozzuto  staff   6.9M Nov 24 16:11 chr19.fasta.gz.2.ebwt</p>
-</dd>
-<dt><kbd><span class="option">-r<var>w-r–r–</var></span></kbd></dt>
-<dd><p>1 lcozzuto  staff    53B Nov 24 16:10 chr19.fasta.gz.3.ebwt</p>
-</dd>
-<dt><kbd><span class="option">-r<var>w-r–r–</var></span></kbd></dt>
-<dd><p>1 lcozzuto  staff    14M Nov 24 16:10 chr19.fasta.gz.4.ebwt</p>
-</dd>
-</dl>
-<p>lrwxr-xr-x   1 lcozzuto  staff    74B Nov 24 16:10 chr19.fasta.gz -&gt; /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/data/chr19.fasta.gz</p>
 <p>You can see the input files staged as links, the output files and some “hidden” files in which we have different information:</p>
 <ul class="simple">
 <li><p><strong>.exitcode</strong>, contains 0 if everything is ok, another value if there was a problem.</p></li>
@@ -255,7 +242,7 @@ is the right container engine. We can do this by using the Nextflow parameter <c
 <p>You can execute again the pipeline by using the Nextflow parameter <code class="docutils literal notranslate"><span class="pre">-resume</span></code> and send it to background with <code class="docutils literal notranslate"><span class="pre">-bg</span></code>.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run lucacozzuto/elixir_NF -with-docker -r main -bg --reads &quot;*.fastq.gz&quot; -resume &gt; log</span>
 
-<span class="go">cat log</span>
+<span class="go">      cat log</span>
 
 <span class="go">      N E X T F L O W  ~  version 21.10.3</span>
 <span class="go">      Launching `lucacozzuto/elixir_NF` [jolly_visvesvaraya] - revision: 040cd63a79 [main]</span>
