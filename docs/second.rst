@@ -158,13 +158,13 @@ Let's have a look inside that folder:
 	cd work/a2/305aaee297250b0c7a455cab35707c/
 	ls -alht
 
--rw-r--r--   1 lcozzuto  staff    20M Nov 24 16:12 chr19.fasta.gz.rev.1.ebwt
--rw-r--r--   1 lcozzuto  staff   6.9M Nov 24 16:12 chr19.fasta.gz.rev.2.ebwt
--rw-r--r--   1 lcozzuto  staff    20M Nov 24 16:11 chr19.fasta.gz.1.ebwt
--rw-r--r--   1 lcozzuto  staff   6.9M Nov 24 16:11 chr19.fasta.gz.2.ebwt
--rw-r--r--   1 lcozzuto  staff    53B Nov 24 16:10 chr19.fasta.gz.3.ebwt
--rw-r--r--   1 lcozzuto  staff    14M Nov 24 16:10 chr19.fasta.gz.4.ebwt
-lrwxr-xr-x   1 lcozzuto  staff    74B Nov 24 16:10 chr19.fasta.gz -> /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/data/chr19.fasta.gz
+	-rw-r--r--   1 lcozzuto  staff    20M Nov 24 16:12 chr19.fasta.gz.rev.1.ebwt
+	-rw-r--r--   1 lcozzuto  staff   6.9M Nov 24 16:12 chr19.fasta.gz.rev.2.ebwt
+	-rw-r--r--   1 lcozzuto  staff    20M Nov 24 16:11 chr19.fasta.gz.1.ebwt
+	-rw-r--r--   1 lcozzuto  staff   6.9M Nov 24 16:11 chr19.fasta.gz.2.ebwt
+	-rw-r--r--   1 lcozzuto  staff    53B Nov 24 16:10 chr19.fasta.gz.3.ebwt
+	-rw-r--r--   1 lcozzuto  staff    14M Nov 24 16:10 chr19.fasta.gz.4.ebwt
+	lrwxr-xr-x   1 lcozzuto  staff    74B Nov 24 16:10 chr19.fasta.gz -> /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/data/chr19.fasta.gz
 
 You can see the input files staged as links, the output files and some "hidden" files in which we have different information:
 
@@ -201,7 +201,7 @@ You can execute again the pipeline by using the Nextflow parameter ``-resume`` a
 
   nextflow run lucacozzuto/elixir_NF -with-docker -r main -bg --reads "*.fastq.gz" -resume > log
   
-  cat log 
+  	cat log 
   
 	N E X T F L O W  ~  version 21.10.3
 	Launching `lucacozzuto/elixir_NF` [jolly_visvesvaraya] - revision: 040cd63a79 [main]
