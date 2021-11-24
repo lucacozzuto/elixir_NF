@@ -43,14 +43,16 @@ We can launch the pipeline just by typing:
 
 .. code-block:: console
 
-  nextflow run lucacozzuto/elixir_NF -r main -with-docker
+  nextflow run lucacozzuto/elixir_NF -r main
 
-In this way Nextflow will pull the pipeline from the GitHub repository, store it at ``$PATH/.nextflow/assets`` and launch it using the container engine `Docker <https://www.docker.com/>`__, thanks to the Nextflow parameter ``-with-docker``.
+In this way Nextflow will pull the pipeline from the GitHub repository, store it at ``$PATH/.nextflow/assets`` and launch it.
 
-Supported Linux containers
+Linux containers
 ===========================
+This pipeline needs tools that are stored within a linux container. For this we need to tell Nextflow which
+is the right container engine. We can do this by using the Nextflow parameter ``-with-docker``.
 
-Nextflow supports many more container engines like Singularity, Shifter, Podman and Charliecloud. In this example we will use Docker: the default image is stored in `DockerHub <https://hub.docker.com/>`__ and is retrieved on the fly. 
+Nextflow supports many more container engines like Singularity, Shifter, Podman and Charliecloud. 
 
 .. |docker| image:: images/docker-logo.png
   :width: 200
@@ -81,8 +83,11 @@ Nextflow supports many more container engines like Singularity, Shifter, Podman 
      - |podman|
      - |charlie|
 
+In this example we will use `Docker <https://www.docker.com/>`__: the default image is stored in `DockerHub <https://hub.docker.com/>`__ and is retrieved on the fly. 
 
 .. code-block:: console
+
+  nextflow run lucacozzuto/elixir_NF -r main -with-docker
 
   N E X T F L O W  ~  version 21.04.3
   Pulling lucacozzuto/elixir_NF ...
@@ -93,7 +98,7 @@ Nextflow supports many more container engines like Singularity, Shifter, Podman 
   =============================================
   reads                           : /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/data/*.fastq.gz
   reference                       : /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/data/chr19.fasta.gz
-  output				: /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/output
+  output			  : /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/output
 
   executor >  local (3)
   [2f/6cd1ca] process > fastqc (B7_H3K4me1_s_chr19.fastq.gz) [100%] 2 of 2 ✔
@@ -127,6 +132,8 @@ We can inspect the output in the new ``output`` folder generated.
   drwxr-xr-x   5 lcozzuto  staff   160B Nov 24 16:13 .
   drwxr-xr-x   4 lcozzuto  staff   128B Nov 24 16:13 ouptut_aln
   drwxr-xr-x   6 lcozzuto  staff   192B Nov 24 16:11 ouptut_fastqc
+ 
+Here you can see the `report <https://lucacozzuto.github.io/elixir_NF/docs/multiqc_report.html>`__ produced by multiQC
 
 Work folder structure and process isolation
 ===============================
@@ -151,7 +158,15 @@ Let's have a look inside that folder:
 	cd work/a2/305aaee297250b0c7a455cab35707c/
 	ls -alht
 
-You see input files staged as links, output files and "hidden" files in which we have different information:
+-rw-r--r--   1 lcozzuto  staff    20M Nov 24 16:12 chr19.fasta.gz.rev.1.ebwt
+-rw-r--r--   1 lcozzuto  staff   6.9M Nov 24 16:12 chr19.fasta.gz.rev.2.ebwt
+-rw-r--r--   1 lcozzuto  staff    20M Nov 24 16:11 chr19.fasta.gz.1.ebwt
+-rw-r--r--   1 lcozzuto  staff   6.9M Nov 24 16:11 chr19.fasta.gz.2.ebwt
+-rw-r--r--   1 lcozzuto  staff    53B Nov 24 16:10 chr19.fasta.gz.3.ebwt
+-rw-r--r--   1 lcozzuto  staff    14M Nov 24 16:10 chr19.fasta.gz.4.ebwt
+lrwxr-xr-x   1 lcozzuto  staff    74B Nov 24 16:10 chr19.fasta.gz -> /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/data/chr19.fasta.gz
+
+You can see the input files staged as links, the output files and some "hidden" files in which we have different information:
 
 - **.exitcode**, contains 0 if everything is ok, another value if there was a problem.
 - **.command.log**, contains the log of the command execution. It is often identical to `.command.out`
