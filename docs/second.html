@@ -200,7 +200,7 @@ is the right container engine. We can do this by using the Nextflow parameter <c
 <p>This code indicates <strong>the path</strong> in which the process is “isolated” and where the corresponding temporary files are kept in the <strong>work</strong> directory.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><strong>IMPORTANT: Nextflow will randomly generate temporary folders so they will be named differently in your execution!!!</strong></p>
+<p>Nextflow will randomly generate temporary folders so they will be named differently in your execution.</p>
 </div>
 <p>Let’s have a look inside that folder:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd work/a2/305aaee297250b0c7a455cab35707c/</span>
@@ -286,15 +286,17 @@ is the right container engine. We can do this by using the Nextflow parameter <c
 <section id="reporting-and-monitoring">
 <h2>Reporting and monitoring<a class="headerlink" href="#reporting-and-monitoring" title="Permalink to this headline"></a></h2>
 <p>Before going to the code we can have a look to two important features of Nextflow: the ability to produce a comprehensive report and the live monitoring offered by <strong>tower.nf</strong> web application.</p>
-<p>We can go to the <strong>tower.nf</strong> website</p>
+<p>We can go to the <a class="reference external" href="https://tower.nf/login">tower.nf</a> website</p>
 <a class="reference internal image-reference" href="../_images/tower.png"><img alt="../_images/tower.png" src="../_images/tower.png" style="width: 800px;" /></a>
 <p>You can generate your token at <a class="reference external" href="https://tower.nf/tokens">https://tower.nf/tokens</a> exporting those environmental variables:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">export TOWER_ACCESS_TOKEN=*******YOUR***TOKEN*****HERE*******</span>
-<span class="go">export NXF_VER=21.04.0</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>You can also store them indefinitely in your <strong>.bashrc</strong> or <strong>.bash_profile</strong> file.</p>
-<p>We can then launch again the pipeline this time without <code class="docutils literal notranslate"><span class="pre">-resume</span></code> and check the live reporting on the tower website adding the parameter <code class="docutils literal notranslate"><span class="pre">-with-tower</span></code>.</p>
+</div>
+<p>We can then launch again the pipeline forcing this time without <code class="docutils literal notranslate"><span class="pre">-resume</span></code> and check the live reporting on the tower website adding the parameter <code class="docutils literal notranslate"><span class="pre">-with-tower</span></code>.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run lucacozzuto/elixir_NF -with-docker -r main -bg --reads &quot;*.fastq.gz&quot; -with-tower &gt; log</span>
 
 <span class="go">tail -f log</span>
@@ -318,9 +320,8 @@ is the right container engine. We can do this by using the Nextflow parameter <c
 </pre></div>
 </div>
 <p>We can check the appearance of a new pipeline and the content</p>
-<a class="reference internal image-reference" href="../_images/tower_elix1.png"><img alt="../_images/tower_elix1.png" src="../_images/tower_elix1.png" style="width: 800px;" /></a>
-<a class="reference internal image-reference" href="../_images/tower_elix2.png"><img alt="../_images/tower_elix2.png" src="../_images/tower_elix2.png" style="width: 800px;" /></a>
-<p>When the pipeline is finished you also get a mail. Adding the parameter <code class="docutils literal notranslate"><span class="pre">-with-report</span></code> will produce a final html report with all the information that was in the tower.nf website.</p>
+<a class="reference internal image-reference" href="docs/images/tower.gif"><img alt="docs/images/tower.gif" src="docs/images/tower.gif" style="width: 800px;" /></a>
+<p>When the pipeline is finished you also get a mail. Adding the parameter <code class="docutils literal notranslate"><span class="pre">-with-report</span></code> will produce a final <a class="reference external" href="report.html">html report</a> with all the information that was in the tower.nf website.</p>
 </section>
 </section>
 
