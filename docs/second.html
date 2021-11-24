@@ -106,7 +106,7 @@ The default platform is <strong>GitHub</strong>, so we will use this repository 
 </tbody>
 </table>
 <p>We can launch the pipeline just by typing:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run lucacozzuto/elixir_NF -r main -latest -with-docker</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run lucacozzuto/elixir_NF -r main -with-docker</span>
 </pre></div>
 </div>
 <p>In this way Nextflow will pull the pipeline from the GitHub repository, store it at <code class="docutils literal notranslate"><span class="pre">$PATH/.nextflow/assets</span></code> and launch it using the container engine <a class="reference external" href="https://www.docker.com/">Docker</a>, thanks to the Nextflow parameter <code class="docutils literal notranslate"><span class="pre">-with-docker</span></code>.</p>
