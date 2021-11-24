@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Nextflow main file &mdash; Nextflow  documentation</title>
+  <title>The Nextflow language &mdash; Nextflow  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -41,7 +41,11 @@
 <li class="toctree-l1"><a class="reference internal" href="about.html">About the course</a></li>
 <li class="toctree-l1"><a class="reference internal" href="first.html">Introduction to Nextflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="second.html">Launching a pipeline</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">The Nextflow main file</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The Nextflow language</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-main-file">The main file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-params-config-file">The params.config file</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="fourth.html">The Nextflow subworkflows and modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fifth.html">The Nextflow config file</a></li>
 </ul>
@@ -60,7 +64,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>The Nextflow main file</li>
+      <li>The Nextflow language</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -69,8 +73,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="the-nextflow-main-file">
-<span id="third-page"></span><h1>The Nextflow main file<a class="headerlink" href="#the-nextflow-main-file" title="Permalink to this headline"></a></h1>
+  <section id="the-nextflow-language">
+<span id="third-page"></span><h1>The Nextflow language<a class="headerlink" href="#the-nextflow-language" title="Permalink to this headline"></a></h1>
+<section id="the-main-file">
+<h2>The main file<a class="headerlink" href="#the-main-file" title="Permalink to this headline"></a></h2>
 <p>We can use GitPod for looking and playing with the code. We need to log-in using github and open the project [… test this …].</p>
 <p>Then we go to workplace and load the <strong>main.nf</strong> file.</p>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="cp">#!/usr/bin/env nextflow</span>
@@ -189,6 +195,18 @@
 <span class="o">}</span>
 </pre></div>
 </div>
+</section>
+<section id="the-params-config-file">
+<h2>The params.config file<a class="headerlink" href="#the-params-config-file" title="Permalink to this headline"></a></h2>
+<p>This file contains the definition of the pipeline parameters with some default values. They can be overridden by using <strong>two hyphens</strong> (as <code class="docutils literal notranslate"><span class="pre">--reads</span></code> or <code class="docutils literal notranslate"><span class="pre">--reference</span></code> etc).</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">{</span>
+	<span class="n">reads</span>		<span class="o">=</span> <span class="s2">&quot;$projectDir/data/*.fastq.gz&quot;</span>
+	<span class="n">reference</span>       <span class="o">=</span> <span class="s2">&quot;$projectDir/data/chr19.fasta.gz&quot;</span>
+        <span class="n">output</span>          <span class="o">=</span> <span class="s2">&quot;./output&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
