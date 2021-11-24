@@ -1,3 +1,5 @@
+# Conf
+
 Here we have a list of Nextflow configuration files, each one for a different profile.
 You can switch among them by using the Nextflow parameter -profile
 
