@@ -40,7 +40,7 @@
 <li class="toctree-l1"><a class="reference internal" href="about.html">About the course</a></li>
 <li class="toctree-l1"><a class="reference internal" href="first.html">Introduction to Nextflow</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Launching a pipeline</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#tower">Tower</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reporting-and-monitoring">Reporting and monitoring</a></li>
 </ul>
 </li>
 </ul>
@@ -73,8 +73,7 @@
 <p>Nextflow supports a number of code sharing platforms: <strong>BitBucket</strong>, <strong>GitHub</strong>, and <strong>GitLab</strong>.
 This feature allows to run pipelines by just pointing to an online repository without caring about downloading, installing etc.
 The default platform is <strong>GitHub</strong>, so we will use this repository as an example.</p>
-<table class="colwidths-given docutils align-default" id="id3">
-<caption><span class="caption-text">Platforms:</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 33%" />
 <col style="width: 33%" />
@@ -93,9 +92,45 @@ The default platform is <strong>GitHub</strong>, so we will use this repository 
 </tr>
 </tbody>
 </table>
-<section id="tower">
-<h2>Tower<a class="headerlink" href="#tower" title="Permalink to this headline"></a></h2>
-<p><a href="#id1"><span class="problematic" id="id2">`</span></a>Nextflow &lt;<a class="reference external" href="https://www.nextflow">https://www.nextflow</a>.</p>
+<p>We can launch the pipeline just by typing:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run lucacozzuto/elixir_NF -r main -latest -with-docker</span>
+</pre></div>
+</div>
+<p>In this way Nextflow will pull the pipeline from the GitHub repository, store it at <code class="docutils literal notranslate"><span class="pre">$PATH/.nextflow/assets</span></code> and launch it using the container engine <a class="reference external" href="https://www.docker.com/">Docker</a>, thanks to the Nextflow parameter <code class="docutils literal notranslate"><span class="pre">-with-docker</span></code>.</p>
+<p>Nextflow supports many more container engines like Singularity, Shifter, Podman and Charliecloud. In this example we will use Docker: the default image is stored in <a class="reference external" href="https://hub.docker.com/">DockerHub</a> and is retrieved on the fly.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">N E X T F L O W  ~  version 21.04.3</span>
+<span class="go">Pulling lucacozzuto/elixir_NF ...</span>
+<span class="go">downloaded from https://github.com/lucacozzuto/elixir_NF.git</span>
+<span class="go">Launching `lucacozzuto/elixir_NF` [determined_minsky] - revision: 711f9f806d [main]</span>
+
+<span class="go">BIOCORE@CRG - N F TESTPIPE  ~  version 1.0</span>
+<span class="go">=============================================</span>
+<span class="go">reads                           : /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/data/*.fastq.gz</span>
+<span class="go">reference                       : /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/data/chr19.fasta.gz</span>
+<span class="go">output                                : /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/output</span>
+
+<span class="go">executor &gt;  local (3)</span>
+<span class="go">[2f/6cd1ca] process &gt; fastqc (B7_H3K4me1_s_chr19.fastq.gz) [100%] 2 of 2 ✔</span>
+<span class="go">[55/032373] process &gt; BOWTIE:Index (chr19.fasta.gz)        [  0%] 0 of 1</span>
+<span class="go">[79/f30f70] process &gt; BOWTIE:Align (B7_H3K4me1_s_chr19.fastq.gz) [100%] 2 of 2 ✔</span>
+<span class="go">[50/088302] process &gt; multiqc                                    [100%] 1 of 1 ✔</span>
+<span class="go">/Users/lcozzuto/ooo/work/27/f1cc39c1e01c9ee55684b347c492f5/B7_input_s_chr19.fastq.gz.sam</span>
+<span class="go">/Users/lcozzuto/ooo/work/27/f1cc39c1e01c9ee55684b347c492f5/B7_input_s_chr19.fastq.gz.log</span>
+<span class="go">/Users/lcozzuto/ooo/work/79/f30f7041abf5baf7c496a0982906c1/B7_H3K4me1_s_chr19.fastq.gz.sam</span>
+<span class="go">/Users/lcozzuto/ooo/work/79/f30f7041abf5baf7c496a0982906c1/B7_H3K4me1_s_chr19.fastq.gz.log</span>
+
+<span class="go">Done! Open the following report in your browser --&gt; /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/output/ouptut_multiQC/multiqc_report.html</span>
+
+<span class="go">Completed at: 24-Nov-2021 15:48:35</span>
+<span class="go">Duration    : 3m 25s</span>
+<span class="go">CPU hours   : 0.1</span>
+<span class="go">Succeeded   : 6</span>
+</pre></div>
+</div>
+<p>This pipeline can be launched also with Singularity just using the Nextflow parameter <code class="docutils literal notranslate"><span class="pre">-with-singularity</span></code>. Nextflow will retrieve and convert the image(s) for you. The image(s) will be then stored so that next time you don’t need to download anything again.</p>
+<section id="reporting-and-monitoring">
+<h2>Reporting and monitoring<a class="headerlink" href="#reporting-and-monitoring" title="Permalink to this headline"></a></h2>
+<p>Before going to the code we can have a look</p>
 </section>
 </section>
 
