@@ -71,13 +71,17 @@ process bowtieAln {
 
 workflow BOWTIE {
  
+    // definition of input
     take: 
     ref_file
     input_reads
-    
+
+    // main part where we connect two modules, indexing and alignment
     main:
 	bow_index = bowtieIdx(ref_file)
 	bowtieAln(bow_index, input_reads)
+	
+    // definition of workflow outputs derived from the alignment module outputs
     emit:
     	sam = bowtieAln.out.samples_sam
     	logs = bowtieAln.out.samples_log
