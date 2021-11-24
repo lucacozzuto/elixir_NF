@@ -21,13 +21,13 @@ Instructors:
 
 
 .. |luca| image:: images/lcozzuto.jpeg
-  :alt: Alternative text
+  :alt: Luca Cozzuto
   
 .. |paolo| image:: images/paoloditommaso.png
-  :alt: Alternative text
+  :alt: Paolo Di Tommaso
   
 .. |evan| image:: images/evanfloden.png
-  :alt: Alternative text
+  :alt: Evan Floden 
   
 
 .. list-table:: Main instructors:
