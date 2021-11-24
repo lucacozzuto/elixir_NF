@@ -149,7 +149,7 @@ At the start of each row, there is an **alphanumeric code**:
 This code indicates **the path** in which the process is "isolated" and where the corresponding temporary files are kept in the **work** directory. 
 
 .. note::
-	**IMPORTANT: Nextflow will randomly generate temporary folders so they will be named differently in your execution!!!**
+	Nextflow will randomly generate temporary folders so they will be named differently in your execution.
 
 Let's have a look inside that folder:
 
@@ -233,7 +233,7 @@ Reporting and monitoring
 
 Before going to the code we can have a look to two important features of Nextflow: the ability to produce a comprehensive report and the live monitoring offered by **tower.nf** web application.
 
-We can go to the **tower.nf** website
+We can go to the `tower.nf <https://tower.nf/login>`__ website
 
 .. image:: images/tower.png
   :width: 800
@@ -243,16 +243,16 @@ We can go to the **tower.nf** website
 .. image:: images/tower.png
   :width: 800
 
-You can generate your token at https://tower.nf/tokens exporting those environmental variables:
+You can generate your token at `https://tower.nf/tokens <https://tower.nf/tokens>`__ exporting those environmental variables:
 
 .. code-block:: console
 
 	export TOWER_ACCESS_TOKEN=*******YOUR***TOKEN*****HERE*******
-	export NXF_VER=21.04.0
 
-You can also store them indefinitely in your **.bashrc** or **.bash_profile** file.
+.. note::
+	You can also store them indefinitely in your **.bashrc** or **.bash_profile** file.
 
-We can then launch again the pipeline this time without ``-resume`` and check the live reporting on the tower website adding the parameter ``-with-tower``.
+We can then launch again the pipeline forcing this time without ``-resume`` and check the live reporting on the tower website adding the parameter ``-with-tower``.
 
 .. code-block:: console
 
@@ -279,13 +279,11 @@ We can then launch again the pipeline this time without ``-resume`` and check th
 
 We can check the appearance of a new pipeline and the content
 
-.. image:: images/tower_elix1.png
+.. image:: images/tower.gif
   :width: 800
   
-.. image:: images/tower_elix2.png
-  :width: 800
   
-When the pipeline is finished you also get a mail. Adding the parameter ``-with-report`` will produce a final html report with all the information that was in the tower.nf website.
+When the pipeline is finished you also get a mail. Adding the parameter ``-with-report`` will produce a final `html report <report.html>`__ with all the information that was in the tower.nf website.
 
 
 
