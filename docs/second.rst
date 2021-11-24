@@ -47,7 +47,40 @@ We can launch the pipeline just by typing:
 
 In this way Nextflow will pull the pipeline from the GitHub repository, store it at ``$PATH/.nextflow/assets`` and launch it using the container engine `Docker <https://www.docker.com/>`__, thanks to the Nextflow parameter ``-with-docker``.
 
+Supported Linux containers
+===========================
+
 Nextflow supports many more container engines like Singularity, Shifter, Podman and Charliecloud. In this example we will use Docker: the default image is stored in `DockerHub <https://hub.docker.com/>`__ and is retrieved on the fly. 
+
+.. |docker| image:: images/docker-logo.png
+  :width: 200
+
+.. |singularity| image:: images/singularity_logo.jpeg
+  :width: 200
+  
+.. |shifter| image:: images/shifter.png
+  :width: 200
+
+.. |podman| image:: images/podman-logo.png
+  :width: 200
+  
+.. |charlie| image:: images/charlie.png
+
+.. list-table:: 
+   :widths: 50 50 50 50 50 
+   :header-rows: 1
+
+   * - Docker
+     - Singularity
+     - Shifter
+     - Podman
+     - Charliecloud
+   * - |docker|
+     - |singularity|
+     - |shifter|
+     - |podman|
+     - |charlie|
+
 
 .. code-block:: console
 
