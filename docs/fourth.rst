@@ -4,17 +4,25 @@
 The Nextflow subworkflows and modules
 *******************
 
-We can have a look at the **FASTQC** module within the **subworkflows/fastqc.nf** file.
+We can have a look at the different modules and sub-workflows files in the **subworkflows** folder.
+
+FastQC
+==========
 
 .. literalinclude:: ../subworkflows/fastqc.nf
    :language: groovy
 
-The **multiQC** module within the **subworkflows/multiqc.nf** file.
+
+multiQC
+==========
 
 .. literalinclude:: ../subworkflows/multiqc.nf
    :language: groovy
    
-The **bowtie** sub-workflow within the **subworkflows/bowtie.nf** file.
+Bowtie
+==========
+
+The **subworkflows/bowtie.nf** file contains the sub-workflow and the modules **Align** and **Index**. 
 
 .. literalinclude:: ../subworkflows/bowtie.nf
    :language: groovy
