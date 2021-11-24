@@ -32,7 +32,7 @@ This file defines the resources needed for the pipeline execution together with 
 ## conf
 This folder has a number of files, each one describing a single Nextflow configuration for each profile that can be chosen using the Nextflow parameter ```-profile```
 
-- standard: local compute
+- standard: local computer
 - hpc_sge: [SGE](https://en.wikipedia.org/wiki/Oracle_Grid_Engine)
 - hpc_slurm: [slurm](https://en.wikipedia.org/wiki/Slurm_Workload_Manager)
 - cloud: [AWS batch](https://aws.amazon.com/es/batch/)
