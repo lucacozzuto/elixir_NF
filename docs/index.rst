@@ -4,7 +4,7 @@
 Courses @ Elixir Nov 2021
 *******************
 
-Nextflow. Data-driven computational pipelines 
+Nextflow, data-driven computational pipelines 
 =======
 
 
