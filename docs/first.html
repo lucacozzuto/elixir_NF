@@ -154,64 +154,6 @@ In the previous example, processes <strong>A</strong>, <strong>B</strong> and <s
 </pre></div>
 </div>
 <p>This will create the <code class="docutils literal notranslate"><span class="pre">nextflow</span></code> executable that can be moved, for example, to <code class="docutils literal notranslate"><span class="pre">/usr/local/bin</span></code>.</p>
-<p>We can now launch a test pipeline:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run nextflow-io/rnaseq-nf -with-singularity</span>
-</pre></div>
-</div>
-<p>This command will automatically pull the pipeline and the required test data from the <a class="reference external" href="https://github.com/nextflow-io/rnatoy">github repository</a>
-The command <code class="docutils literal notranslate"><span class="pre">-with-singularity</span></code> will automatically trigger the download of the image <code class="docutils literal notranslate"><span class="pre">nextflow/rnatoy:1.3</span></code> from DockerHub and convert it on-the-fly into a singularity image that will be used for running each step of the pipeline.
-The pipeline can also recognize the queue system which is used on the machine where it is launched. In the following examples, I launched the same pipeline both on the CRG high performance computing (HPC) cluster and on my MacBook:</p>
-<p>The result from CRG HPC:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run nextflow-io/rnaseq-nf -with-singularity</span>
-
-<span class="go">N E X T F L O W  ~  version 21.04.3</span>
-<span class="go">Pulling nextflow-io/rnaseq-nf ...</span>
-<span class="go">downloaded from https://github.com/nextflow-io/rnaseq-nf.git</span>
-<span class="go">Launching `nextflow-io/rnaseq-nf` [serene_wing] - revision: 83bdb3199b [master]</span>
-<span class="go">R N A S E Q - N F   P I P E L I N E</span>
-<span class="go"> ===================================</span>
-<span class="go">transcriptome: /users/bi/lcozzuto/.nextflow/assets/nextflow-io/rnaseq-nf/data/ggal/ggal_1_48850000_49020000.Ggal71.500bpflank.fa</span>
-<span class="go">reads        : /users/bi/lcozzuto/.nextflow/assets/nextflow-io/rnaseq-nf/data/ggal/*_{1,2}.fq</span>
-<span class="go">outdir       : results</span>
-
-<span class="go">[-        ] process &gt; RNASEQ:INDEX  -</span>
-<span class="go">[-        ] process &gt; RNASEQ:FASTQC -</span>
-<span class="go">executor &gt;  crg (6)</span>
-<span class="go">[cc/dd76f0] process &gt; RNASEQ:INDEX (ggal_1_48850000_49020000) [100%] 1 of 1 ✔</span>
-<span class="go">[7d/7a96f2] process &gt; RNASEQ:FASTQC (FASTQC on ggal_liver)    [100%] 2 of 2 ✔</span>
-<span class="go">[ab/ac8558] process &gt; RNASEQ:QUANT (ggal_gut)                 [100%] 2 of 2 ✔</span>
-<span class="go">[a0/452d3f] process &gt; MULTIQC                                 [100%] 1 of 1 ✔</span>
-
-<span class="go">Pulling Singularity image docker://quay.io/nextflow/rnaseq-nf:v1.0 [cache /nfs/users2/bi/lcozzuto/aaa/work/singularity/quay.io-nextflow-rnaseq-nf-v1.0.img]</span>
-<span class="go">WARN: Singularity cache directory has not been defined -- Remote image will be stored in the path: /nfs/users2/bi/lcozzuto/aaa/work/singularity -- Use env  variable NXF_SINGULARITY_CACHEDIR to specify a different location</span>
-<span class="go">        Done! Open the following report in your browser --&gt; results/multiqc_report.html</span>
-
-<span class="go">Completed at: 01-Oct-2021 12:01:50</span>
-<span class="go">Duration    : 3m 57s</span>
-<span class="go">CPU hours   : (a few seconds)</span>
-<span class="go">Succeeded   : 6</span>
-</pre></div>
-</div>
-<p>The result from my MacBook:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run nextflow-io/rnaseq-nf -with-docker</span>
-
-<span class="go">N E X T F L O W  ~  version 21.04.3</span>
-<span class="go">Launching `nextflow-io/rnaseq-nf` [happy_torvalds] - revision: 83bdb3199b [master]</span>
-<span class="go">R N A S E Q - N F   P I P E L I N E</span>
-<span class="go">===================================</span>
-<span class="go">transcriptome: /Users/lcozzuto/.nextflow/assets/nextflow-io/rnaseq-nf/data/ggal/ggal_1_48850000_49020000.Ggal71.500bpflank.fa</span>
-<span class="go">reads        : /Users/lcozzuto/.nextflow/assets/nextflow-io/rnaseq-nf/data/ggal/*_{1,2}.fq</span>
-<span class="go">outdir       : results</span>
-
-<span class="go">executor &gt;  local (6)</span>
-<span class="go">[37/933971] process &gt; RNASEQ:INDEX (ggal_1_48850000_49020000) [100%] 1 of 1 ✔</span>
-<span class="go">[fe/b06693] process &gt; RNASEQ:FASTQC (FASTQC on ggal_gut)      [100%] 2 of 2 ✔</span>
-<span class="go">[73/84b898] process &gt; RNASEQ:QUANT (ggal_gut)                 [100%] 2 of 2 ✔</span>
-<span class="go">[f2/917905] process &gt; MULTIQC                                 [100%] 1 of 1 ✔</span>
-
-<span class="go">Done! Open the following report in your browser --&gt; results/multiqc_report.html</span>
-</pre></div>
-</div>
 </section>
 </section>
 
