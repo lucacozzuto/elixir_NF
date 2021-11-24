@@ -21,7 +21,7 @@
 
 
 /* 
- * This code enables the new dsl of Nextflow. 
+ * This code enables the new Nextflow dsl (domain-specific language). 
  */
 
 nextflow.enable.dsl=2
