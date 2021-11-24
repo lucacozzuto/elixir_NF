@@ -49,8 +49,8 @@ In this way Nextflow will pull the pipeline from the GitHub repository, store it
 
 Linux containers
 ===========================
-This pipeline needs tools that are stored within a linux container. For this we need to tell Nextflow which
-is the right container engine. We can do this by using the Nextflow parameter ``-with-docker``.
+This pipeline needs tools that are stored within linux containers. In particular we will use images for `Bowtie <http://bowtie-bio.sourceforge.net/index.shtml>`__, `FastQC <https://www.bioinformatics.babraham.ac.uk/projects/fastqc/>`__ and `multiQC <https://multiqc.info/>`__ that are retrieved from `Biocontainers <https://biocontainers.pro/>`__.
+For this we need to tell Nextflow which is the right container engine. We can do this by using the Nextflow parameter ``-with-docker``.
 
 Nextflow supports many more container engines like Singularity, Shifter, Podman and Charliecloud. 
 
