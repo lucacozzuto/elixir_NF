@@ -42,7 +42,7 @@
 <li class="toctree-l1"><a class="reference internal" href="first.html">Introduction to Nextflow</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Launching a pipeline</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#sharing-nextflow-code">Sharing Nextflow code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#supported-linux-containers">Supported Linux containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linux-containers">Linux containers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#work-folder-structure-and-process-isolation">Work folder structure and process isolation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#resuming-and-changing-parameters">Resuming and changing parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#reporting-and-monitoring">Reporting and monitoring</a></li>
@@ -108,14 +108,16 @@ The default platform is <strong>GitHub</strong>, so we will use this repository 
 </tbody>
 </table>
 <p>We can launch the pipeline just by typing:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run lucacozzuto/elixir_NF -r main -with-docker</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run lucacozzuto/elixir_NF -r main</span>
 </pre></div>
 </div>
-<p>In this way Nextflow will pull the pipeline from the GitHub repository, store it at <code class="docutils literal notranslate"><span class="pre">$PATH/.nextflow/assets</span></code> and launch it using the container engine <a class="reference external" href="https://www.docker.com/">Docker</a>, thanks to the Nextflow parameter <code class="docutils literal notranslate"><span class="pre">-with-docker</span></code>.</p>
+<p>In this way Nextflow will pull the pipeline from the GitHub repository, store it at <code class="docutils literal notranslate"><span class="pre">$PATH/.nextflow/assets</span></code> and launch it.</p>
 </section>
-<section id="supported-linux-containers">
-<h2>Supported Linux containers<a class="headerlink" href="#supported-linux-containers" title="Permalink to this headline"></a></h2>
-<p>Nextflow supports many more container engines like Singularity, Shifter, Podman and Charliecloud. In this example we will use Docker: the default image is stored in <a class="reference external" href="https://hub.docker.com/">DockerHub</a> and is retrieved on the fly.</p>
+<section id="linux-containers">
+<h2>Linux containers<a class="headerlink" href="#linux-containers" title="Permalink to this headline"></a></h2>
+<p>This pipeline needs tools that are stored within a linux container. For this we need to tell Nextflow which
+is the right container engine. We can do this by using the Nextflow parameter <code class="docutils literal notranslate"><span class="pre">-with-docker</span></code>.</p>
+<p>Nextflow supports many more container engines like Singularity, Shifter, Podman and Charliecloud.</p>
 <table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 20%" />
@@ -141,7 +143,10 @@ The default platform is <strong>GitHub</strong>, so we will use this repository 
 </tr>
 </tbody>
 </table>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">N E X T F L O W  ~  version 21.04.3</span>
+<p>In this example we will use <a class="reference external" href="https://www.docker.com/">Docker</a>: the default image is stored in <a class="reference external" href="https://hub.docker.com/">DockerHub</a> and is retrieved on the fly.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run lucacozzuto/elixir_NF -r main -with-docker</span>
+
+<span class="go">N E X T F L O W  ~  version 21.04.3</span>
 <span class="go">Pulling lucacozzuto/elixir_NF ...</span>
 <span class="go">downloaded from https://github.com/lucacozzuto/elixir_NF.git</span>
 <span class="go">Launching `lucacozzuto/elixir_NF` [determined_minsky] - revision: 711f9f806d [main]</span>
@@ -150,7 +155,7 @@ The default platform is <strong>GitHub</strong>, so we will use this repository 
 <span class="go">=============================================</span>
 <span class="go">reads                           : /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/data/*.fastq.gz</span>
 <span class="go">reference                       : /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/data/chr19.fasta.gz</span>
-<span class="go">output                                : /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/output</span>
+<span class="go">output                          : /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/output</span>
 
 <span class="go">executor &gt;  local (3)</span>
 <span class="go">[2f/6cd1ca] process &gt; fastqc (B7_H3K4me1_s_chr19.fastq.gz) [100%] 2 of 2 ✔</span>
@@ -183,6 +188,7 @@ The default platform is <strong>GitHub</strong>, so we will use this repository 
 <span class="go">drwxr-xr-x   6 lcozzuto  staff   192B Nov 24 16:11 ouptut_fastqc</span>
 </pre></div>
 </div>
+<p>Here you can see the <a class="reference external" href="https://lucacozzuto.github.io/elixir_NF/docs/multiqc_report.html">report</a> produced by multiQC</p>
 </section>
 <section id="work-folder-structure-and-process-isolation">
 <h2>Work folder structure and process isolation<a class="headerlink" href="#work-folder-structure-and-process-isolation" title="Permalink to this headline"></a></h2>
@@ -201,7 +207,28 @@ The default platform is <strong>GitHub</strong>, so we will use this repository 
 <span class="go">ls -alht</span>
 </pre></div>
 </div>
-<p>You see input files staged as links, output files and “hidden” files in which we have different information:</p>
+<dl class="option-list">
+<dt><kbd><span class="option">-r<var>w-r–r–</var></span></kbd></dt>
+<dd><p>1 lcozzuto  staff    20M Nov 24 16:12 chr19.fasta.gz.rev.1.ebwt</p>
+</dd>
+<dt><kbd><span class="option">-r<var>w-r–r–</var></span></kbd></dt>
+<dd><p>1 lcozzuto  staff   6.9M Nov 24 16:12 chr19.fasta.gz.rev.2.ebwt</p>
+</dd>
+<dt><kbd><span class="option">-r<var>w-r–r–</var></span></kbd></dt>
+<dd><p>1 lcozzuto  staff    20M Nov 24 16:11 chr19.fasta.gz.1.ebwt</p>
+</dd>
+<dt><kbd><span class="option">-r<var>w-r–r–</var></span></kbd></dt>
+<dd><p>1 lcozzuto  staff   6.9M Nov 24 16:11 chr19.fasta.gz.2.ebwt</p>
+</dd>
+<dt><kbd><span class="option">-r<var>w-r–r–</var></span></kbd></dt>
+<dd><p>1 lcozzuto  staff    53B Nov 24 16:10 chr19.fasta.gz.3.ebwt</p>
+</dd>
+<dt><kbd><span class="option">-r<var>w-r–r–</var></span></kbd></dt>
+<dd><p>1 lcozzuto  staff    14M Nov 24 16:10 chr19.fasta.gz.4.ebwt</p>
+</dd>
+</dl>
+<p>lrwxr-xr-x   1 lcozzuto  staff    74B Nov 24 16:10 chr19.fasta.gz -&gt; /Users/lcozzuto/.nextflow/assets/lucacozzuto/elixir_NF/data/chr19.fasta.gz</p>
+<p>You can see the input files staged as links, the output files and some “hidden” files in which we have different information:</p>
 <ul class="simple">
 <li><p><strong>.exitcode</strong>, contains 0 if everything is ok, another value if there was a problem.</p></li>
 <li><p><strong>.command.log</strong>, contains the log of the command execution. It is often identical to <cite>.command.out</cite></p></li>
