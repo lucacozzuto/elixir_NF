@@ -18,4 +18,5 @@ Contents:
 
    about
    first
+   second
 
