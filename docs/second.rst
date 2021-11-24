@@ -43,7 +43,7 @@ We can launch the pipeline just by typing:
 
 .. code-block:: console
 
-  nextflow run lucacozzuto/elixir_NF -r main -latest -with-docker
+  nextflow run lucacozzuto/elixir_NF -r main -with-docker
 
 In this way Nextflow will pull the pipeline from the GitHub repository, store it at ``$PATH/.nextflow/assets`` and launch it using the container engine `Docker <https://www.docker.com/>`__, thanks to the Nextflow parameter ``-with-docker``.
 
