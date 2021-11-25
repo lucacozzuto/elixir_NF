@@ -238,7 +238,7 @@ We can go to the `tower.nf <https://tower.nf/login>`__ website
 .. image:: images/tower.png
   :width: 800
 
- and click on the GitHub authentication.
+ and click on the **GitHub** authentication.
 
 .. image:: images/tower.png
   :width: 800
